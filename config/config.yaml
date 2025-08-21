@@ -1,0 +1,81 @@
+# Configuration for Microsoft Family Safety Review Analysis
+# This file contains settings for all data sources
+
+# Data Source Configurations
+data_sources:
+  playstore:
+    enabled: true
+    app_id: "com.microsoft.familysafety"
+    lang: "en"
+    country: "us"
+    
+  appstore:
+    enabled: true
+    app_id: "1519844643"  # Microsoft Family Safety
+    countries: ["us", "in", "gb", "ca", "au"]
+    
+  twitter:
+    enabled: false  # Disabled due to snscrape compatibility issues with Python 3.13
+    default_query: '"Microsoft Family Safety" OR "Family Safety app" OR "Microsoft parental controls"'
+    days_back: 120
+    include_retweets: false
+    
+  rss:
+    enabled: true
+    feed_urls:
+      - "https://news.google.com/rss/search?q=\"Microsoft+Family+Safety\"&hl=en-IN&gl=IN&ceid=IN:en"
+    days_back: 120
+    
+  news:
+    enabled: true
+    default_query: "Microsoft Family Safety issue OR complaint OR review"
+    days_back: 120
+    search_results: 100
+
+# Analysis Settings
+analysis:
+  sentiment_threshold: -0.05  # Threshold for negative sentiment
+  
+  # Custom categories (optional - will use default if not specified)
+  categories:
+    "Screen Time": ["screen time", "time limit", "time tracking"]
+    "App Usage": ["app usage", "usage report", "usage tracking", "activity report"]
+    "App Blocking": ["block", "blocking", "restriction", "access control"]
+    "Web Filtering": ["web filter", "web filtering", "filtering", "safe browsing"]
+    "Devices": ["device", "phone", "tablet", "tracking"]
+    "Spending and Purchase": ["purchase", "paid", "premium", "subscription", "spending", "billing"]
+    "Parental Consent & Age Restriction": ["parental consent", "consent", "approval", "age restriction", "age limit", "age control"]
+    "Notifications & Alerts": ["notification", "alert", "reminder", "message"]
+    "Cross-Platform Sync": ["sync", "synchronization", "not updating", "not reflecting", "delay", "real-time"]
+    "Setup & Configuration": ["setup", "configuration", "install", "initial setup", "settings"]
+    "App Performance": ["slow", "lag", "crash", "performance", "bug", "freeze"]
+    "App Reliability": ["unstable", "reliable", "reliability", "stability", "fails", "failure"]
+    "Login & Account Issues": ["login", "sign in", "account", "authentication", "credentials", "password", "email"]
+    "Bypass & Circumvention": ["bypass", "disable", "turn off", "workaround", "hack", "override", "ignore"]
+    "Customer Support": ["support", "help", "contact", "response", "ticket", "no reply", "assistance"]
+    "Privacy Concerns": ["privacy", "data", "tracking", "monitoring", "spy", "surveillance"]
+    "User Interface": ["interface", "design", "layout", "navigation", "UI", "UX"]
+    "Full Frustration": ["hate", "terrible", "worst", "awful", "useless", "frustrating", "annoying", "disappointed"]
+    "Feature Limitations": ["missing feature", "can't do", "not available", "removed", "limited", "lack of"]
+    "Approval & Permissions": ["approve", "approval", "permission", "request", "grant access", "extra time"]
+    "Time Propagation & Sync Delay": ["delay", "not updating", "not reflecting", "takes time", "propagate"]
+    "Child Account Management": ["child account", "add child", "manage child", "child profile"]
+    "Game & Xbox Integration": ["xbox", "game", "minecraft", "console", "play", "gaming"]
+    "Forced Usage & App Dependency": ["forced", "have to use", "required", "mandatory", "can't avoid"]
+    "Account Linking & Sharing": ["share", "link", "family member", "office", "account sharing"]
+    "Update Issues": ["update", "after update", "new version", "latest version"]
+    "Add Money": ["add money", "in-app purchase", "buy", "payment", "add balance", "billing"]
+
+# Output Settings
+output:
+  directory: "output"
+  csv_filename: "reviews_analysis.csv"
+  summary_filename: "analysis_summary.json"
+  
+# Fetch Limits
+limits:
+  playstore: 500
+  appstore: 200
+  twitter: 100
+  rss: 100
+  news: 100

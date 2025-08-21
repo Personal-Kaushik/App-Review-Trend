@@ -1,0 +1,761 @@
+{
+  "timestamp": "2025-08-21T18:45:08.356079",
+  "summary": {
+    "total_reviews": 527,
+    "sentiment_distribution": {
+      "Positive": 179,
+      "Neutral": 199,
+      "Negative": 149
+    },
+    "category_distribution": {
+      "Others": 22,
+      "Login & Account Issues": 6,
+      "Notifications & Alerts": 7,
+      "Setup & Configuration": 4,
+      "Devices": 15,
+      "App Performance": 23,
+      "Screen Time": 16,
+      "App Reliability": 2,
+      "Full Frustration": 22,
+      "Game & Xbox Integration": 1,
+      "App Blocking": 18,
+      "Customer Support": 2,
+      "Add Money": 1,
+      "User Interface": 1,
+      "App Usage": 2,
+      "Forced Usage & App Dependency": 1,
+      "Spending and Purchase": 2,
+      "Parental Consent & Age Restriction": 1,
+      "Account Linking & Sharing": 1,
+      "Update Issues": 1,
+      "Feature Limitations": 1
+    },
+    "source_distribution": {
+      "playstore": 492,
+      "rss": 35
+    },
+    "date_range": {
+      "earliest": "2025-01-15T05:48:12",
+      "latest": "2025-08-20T16:46:27",
+      "total_days": 217
+    },
+    "negative_review_percentage": 28.27324478178368
+  },
+  "top_issues": [
+    {
+      "category": "App Performance",
+      "count": 23,
+      "percentage": 15.436241610738255,
+      "sample_reviews": [
+        {
+          "text": "the tool is too slow. specisly when we need to set/change time per day for multiple kids.",
+          "source": "playstore",
+          "date": "2025-08-02T18:12:09"
+        },
+        {
+          "text": "Update, after 3 years, it is still just as annoying, awkward and buggy. E.g. \"Give more time\" regularly fails to work. I reproduced several errors and sent logs multiple times to MS, but it has never ...",
+          "source": "playstore",
+          "date": "2025-07-20T00:29:06"
+        },
+        {
+          "text": "I only downloaded because it was supposed to fix their bug that prevents web browsers (not Edge....) from working at all. It didn't help. I can't even use it because I'm the only member of the \"family...",
+          "source": "playstore",
+          "date": "2025-07-09T11:06:08"
+        }
+      ]
+    },
+    {
+      "category": "Others",
+      "count": 22,
+      "percentage": 14.76510067114094,
+      "sample_reviews": [
+        {
+          "text": "This app is 5-10 years behind the times in terms of User experience and features available. If it was possible to supervise my child's laptop with any other free app I would. I might have to pay for a...",
+          "source": "playstore",
+          "date": "2025-08-20T16:46:27"
+        },
+        {
+          "text": "need dark mode",
+          "source": "playstore",
+          "date": "2025-07-29T11:49:19"
+        },
+        {
+          "text": "a painful disruptive app",
+          "source": "playstore",
+          "date": "2025-07-29T06:54:23"
+        }
+      ]
+    },
+    {
+      "category": "Full Frustration",
+      "count": 22,
+      "percentage": 14.76510067114094,
+      "sample_reviews": [
+        {
+          "text": "annoying because I cant get through websites and it always annoys me",
+          "source": "playstore",
+          "date": "2025-07-21T13:57:06"
+        },
+        {
+          "text": "frustrating app not work properly",
+          "source": "playstore",
+          "date": "2025-07-15T15:52:24"
+        },
+        {
+          "text": "worst thing ever made",
+          "source": "playstore",
+          "date": "2025-07-08T02:31:26"
+        }
+      ]
+    },
+    {
+      "category": "App Blocking",
+      "count": 18,
+      "percentage": 12.080536912751679,
+      "sample_reviews": [
+        {
+          "text": "Stopped working again. Unable to block or lock device. Whenever it fails it makes it less restrictive and I have to block the internet via my router instead. Child can still use computer offline but I...",
+          "source": "playstore",
+          "date": "2025-07-15T17:13:50"
+        },
+        {
+          "text": "Annoying to use, doesn't consult users when making changes (eg completely blocking apps for \"safety concerns\" so you can only use Microsoft apps) and does nothing to allow you to get around it other t...",
+          "source": "playstore",
+          "date": "2025-06-25T22:51:14"
+        },
+        {
+          "text": "The saftey features are rubbish. not only is there no way to manually add websites you want blocked, by turning on \"safe search\" for Edge searches it automatically blocks Chrome from being used and by...",
+          "source": "playstore",
+          "date": "2025-06-22T00:54:52"
+        }
+      ]
+    },
+    {
+      "category": "Screen Time",
+      "count": 16,
+      "percentage": 10.738255033557047,
+      "sample_reviews": [
+        {
+          "text": "Miserable, infuriating app. It often refuses my password, and makes me jump through many hoops just to sign on to the thing. My child who is desperate for screen time, stands there waiting while I try...",
+          "source": "playstore",
+          "date": "2025-07-30T02:32:34"
+        },
+        {
+          "text": "Consistently laggy performance, have to wait for even lists of apps to load in the UI, then can take multiple minutes until a change or agreed request to visit a website etc is processed on protected ...",
+          "source": "playstore",
+          "date": "2025-07-27T21:22:20"
+        },
+        {
+          "text": "This app is a total waste of time. It does not apply any of the time limits you may try to set. Don't bother.",
+          "source": "playstore",
+          "date": "2025-07-22T17:03:43"
+        }
+      ]
+    },
+    {
+      "category": "Devices",
+      "count": 15,
+      "percentage": 10.06711409395973,
+      "sample_reviews": [
+        {
+          "text": "useless for iphone or ipad tracking. . . which is what my daugther use. wish the apps would have let me know before going through the whole process.",
+          "source": "playstore",
+          "date": "2025-08-08T02:12:09"
+        },
+        {
+          "text": "no location tracking makes the app poor",
+          "source": "playstore",
+          "date": "2025-07-26T20:27:00"
+        },
+        {
+          "text": "I'm having. trouble having android phone pickup on the app. from what I can gather, the applicationa reflect on family safety. but, the app doesn't record the time spent on the apps and games on andro...",
+          "source": "playstore",
+          "date": "2025-05-28T12:50:39"
+        }
+      ]
+    },
+    {
+      "category": "Notifications & Alerts",
+      "count": 7,
+      "percentage": 4.697986577181208,
+      "sample_reviews": [
+        {
+          "text": "Try adding finds to child's account is a ball ache. have been trying for months using the app, but constantly get a message saying, \"something went wrong\". Suppose to make things easy but made it impo...",
+          "source": "playstore",
+          "date": "2025-08-13T01:20:30"
+        },
+        {
+          "text": "For your child's safety, LOOK ELSEWHERE!! This is the WORST and most frustrating app I've ever used! When you attempt to do something simple, like change your child's schedule, it consistently give yo...",
+          "source": "playstore",
+          "date": "2025-08-11T21:27:29"
+        },
+        {
+          "text": "One of the worst apps I've used. Super slow, bad UI design, requests sometimes works, and when it works it takes a while to actually do something on the family PC! And no way to disable email notifica...",
+          "source": "playstore",
+          "date": "2025-08-06T01:13:55"
+        }
+      ]
+    },
+    {
+      "category": "Login & Account Issues",
+      "count": 6,
+      "percentage": 4.026845637583892,
+      "sample_reviews": [
+        {
+          "text": "used to work well. however, since March 2025 it hasn't been working properly at all. it can't recognise my kid's laptop computer, account and login, even I reset the account on his laptop several time...",
+          "source": "playstore",
+          "date": "2025-08-17T12:58:39"
+        },
+        {
+          "text": "Was difficult to add money to sons account, now its impossible..no idea what changed but it now just hangs....",
+          "source": "playstore",
+          "date": "2025-06-27T16:22:44"
+        },
+        {
+          "text": "Recently, it's logging my daughter out of her account. Thus, disabling the app. The only way it will let me log her back in is through a VPN. It's like Microsoft has blacklisted her from logging in th...",
+          "source": "playstore",
+          "date": "2025-06-06T18:06:00"
+        }
+      ]
+    },
+    {
+      "category": "Setup & Configuration",
+      "count": 4,
+      "percentage": 2.684563758389262,
+      "sample_reviews": [
+        {
+          "text": "frustrating and fails to work correctly. App often ignores safety settings, refuses to update settings for my kid, and online help is significantly less than helpful.",
+          "source": "playstore",
+          "date": "2025-08-12T21:02:20"
+        },
+        {
+          "text": "So slow. Like really slow. Why does it take so long to load the Xbox and Windows settings for a profile??",
+          "source": "playstore",
+          "date": "2025-07-24T03:34:28"
+        },
+        {
+          "text": "I little patience needed in setup but then runs well",
+          "source": "playstore",
+          "date": "2025-04-24T11:46:20"
+        }
+      ]
+    },
+    {
+      "category": "App Reliability",
+      "count": 2,
+      "percentage": 1.342281879194631,
+      "sample_reviews": [
+        {
+          "text": "Recent update fails to log in with authenticator app.",
+          "source": "playstore",
+          "date": "2025-07-24T16:10:54"
+        },
+        {
+          "text": "App worked setting up one child. Upon adding second child app went blank. completely blank. it is hard to imagine a multinational creating an app that fails so badly. it simply isn't working. What a w...",
+          "source": "playstore",
+          "date": "2025-07-05T16:22:41"
+        }
+      ]
+    }
+  ],
+  "trend_analysis": {
+    "monthly_data": [
+      {
+        "month": "2025-01",
+        "Account Linking & Sharing": 0,
+        "Add Money": 0,
+        "App Blocking": 3,
+        "App Performance": 10,
+        "App Reliability": 0,
+        "App Usage": 1,
+        "Approval & Permissions": 1,
+        "Bypass & Circumvention": 0,
+        "Customer Support": 1,
+        "Devices": 4,
+        "Feature Limitations": 1,
+        "Forced Usage & App Dependency": 0,
+        "Full Frustration": 1,
+        "Game & Xbox Integration": 2,
+        "Login & Account Issues": 2,
+        "Notifications & Alerts": 2,
+        "Others": 4,
+        "Parental Consent & Age Restriction": 0,
+        "Screen Time": 1,
+        "Setup & Configuration": 0,
+        "Spending and Purchase": 2,
+        "Update Issues": 1,
+        "User Interface": 1,
+        "month_name": "January 2025"
+      },
+      {
+        "month": "2025-02",
+        "Account Linking & Sharing": 1,
+        "Add Money": 0,
+        "App Blocking": 6,
+        "App Performance": 11,
+        "App Reliability": 0,
+        "App Usage": 0,
+        "Approval & Permissions": 0,
+        "Bypass & Circumvention": 0,
+        "Customer Support": 1,
+        "Devices": 9,
+        "Feature Limitations": 1,
+        "Forced Usage & App Dependency": 0,
+        "Full Frustration": 7,
+        "Game & Xbox Integration": 1,
+        "Login & Account Issues": 3,
+        "Notifications & Alerts": 0,
+        "Others": 15,
+        "Parental Consent & Age Restriction": 0,
+        "Screen Time": 5,
+        "Setup & Configuration": 1,
+        "Spending and Purchase": 2,
+        "Update Issues": 1,
+        "User Interface": 0,
+        "month_name": "February 2025"
+      },
+      {
+        "month": "2025-03",
+        "Account Linking & Sharing": 0,
+        "Add Money": 0,
+        "App Blocking": 5,
+        "App Performance": 3,
+        "App Reliability": 1,
+        "App Usage": 1,
+        "Approval & Permissions": 1,
+        "Bypass & Circumvention": 1,
+        "Customer Support": 0,
+        "Devices": 11,
+        "Feature Limitations": 1,
+        "Forced Usage & App Dependency": 0,
+        "Full Frustration": 1,
+        "Game & Xbox Integration": 2,
+        "Login & Account Issues": 2,
+        "Notifications & Alerts": 2,
+        "Others": 8,
+        "Parental Consent & Age Restriction": 0,
+        "Screen Time": 7,
+        "Setup & Configuration": 1,
+        "Spending and Purchase": 0,
+        "Update Issues": 0,
+        "User Interface": 0,
+        "month_name": "March 2025"
+      },
+      {
+        "month": "2025-04",
+        "Account Linking & Sharing": 1,
+        "Add Money": 0,
+        "App Blocking": 1,
+        "App Performance": 8,
+        "App Reliability": 0,
+        "App Usage": 1,
+        "Approval & Permissions": 0,
+        "Bypass & Circumvention": 0,
+        "Customer Support": 1,
+        "Devices": 10,
+        "Feature Limitations": 0,
+        "Forced Usage & App Dependency": 0,
+        "Full Frustration": 4,
+        "Game & Xbox Integration": 1,
+        "Login & Account Issues": 6,
+        "Notifications & Alerts": 1,
+        "Others": 10,
+        "Parental Consent & Age Restriction": 1,
+        "Screen Time": 4,
+        "Setup & Configuration": 1,
+        "Spending and Purchase": 4,
+        "Update Issues": 0,
+        "User Interface": 0,
+        "month_name": "April 2025"
+      },
+      {
+        "month": "2025-05",
+        "Account Linking & Sharing": 0,
+        "Add Money": 1,
+        "App Blocking": 5,
+        "App Performance": 4,
+        "App Reliability": 0,
+        "App Usage": 0,
+        "Approval & Permissions": 2,
+        "Bypass & Circumvention": 0,
+        "Customer Support": 0,
+        "Devices": 3,
+        "Feature Limitations": 0,
+        "Forced Usage & App Dependency": 2,
+        "Full Frustration": 1,
+        "Game & Xbox Integration": 0,
+        "Login & Account Issues": 1,
+        "Notifications & Alerts": 1,
+        "Others": 15,
+        "Parental Consent & Age Restriction": 0,
+        "Screen Time": 2,
+        "Setup & Configuration": 1,
+        "Spending and Purchase": 0,
+        "Update Issues": 0,
+        "User Interface": 0,
+        "month_name": "May 2025"
+      },
+      {
+        "month": "2025-06",
+        "Account Linking & Sharing": 1,
+        "Add Money": 1,
+        "App Blocking": 11,
+        "App Performance": 6,
+        "App Reliability": 0,
+        "App Usage": 1,
+        "Approval & Permissions": 1,
+        "Bypass & Circumvention": 0,
+        "Customer Support": 0,
+        "Devices": 2,
+        "Feature Limitations": 1,
+        "Forced Usage & App Dependency": 0,
+        "Full Frustration": 5,
+        "Game & Xbox Integration": 1,
+        "Login & Account Issues": 3,
+        "Notifications & Alerts": 2,
+        "Others": 8,
+        "Parental Consent & Age Restriction": 1,
+        "Screen Time": 5,
+        "Setup & Configuration": 1,
+        "Spending and Purchase": 1,
+        "Update Issues": 0,
+        "User Interface": 1,
+        "month_name": "June 2025"
+      },
+      {
+        "month": "2025-07",
+        "Account Linking & Sharing": 0,
+        "Add Money": 0,
+        "App Blocking": 3,
+        "App Performance": 9,
+        "App Reliability": 2,
+        "App Usage": 0,
+        "Approval & Permissions": 0,
+        "Bypass & Circumvention": 0,
+        "Customer Support": 1,
+        "Devices": 1,
+        "Feature Limitations": 0,
+        "Forced Usage & App Dependency": 0,
+        "Full Frustration": 4,
+        "Game & Xbox Integration": 2,
+        "Login & Account Issues": 2,
+        "Notifications & Alerts": 1,
+        "Others": 11,
+        "Parental Consent & Age Restriction": 0,
+        "Screen Time": 7,
+        "Setup & Configuration": 1,
+        "Spending and Purchase": 0,
+        "Update Issues": 0,
+        "User Interface": 0,
+        "month_name": "July 2025"
+      },
+      {
+        "month": "2025-08",
+        "Account Linking & Sharing": 0,
+        "Add Money": 0,
+        "App Blocking": 0,
+        "App Performance": 2,
+        "App Reliability": 0,
+        "App Usage": 0,
+        "Approval & Permissions": 0,
+        "Bypass & Circumvention": 0,
+        "Customer Support": 0,
+        "Devices": 3,
+        "Feature Limitations": 1,
+        "Forced Usage & App Dependency": 0,
+        "Full Frustration": 2,
+        "Game & Xbox Integration": 0,
+        "Login & Account Issues": 3,
+        "Notifications & Alerts": 3,
+        "Others": 5,
+        "Parental Consent & Age Restriction": 0,
+        "Screen Time": 2,
+        "Setup & Configuration": 1,
+        "Spending and Purchase": 0,
+        "Update Issues": 0,
+        "User Interface": 0,
+        "month_name": "August 2025"
+      }
+    ],
+    "feature_trends": {
+      "Account Linking & Sharing": {
+        "total_negative_reviews": 3,
+        "avg_monthly_negative": 0.38,
+        "trend_direction": "Stable",
+        "slope": -0.036,
+        "percentage_change": -50.0,
+        "recent_months_avg": 0.25,
+        "early_months_avg": 0.5,
+        "highest_month": "February 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      },
+      "Add Money": {
+        "total_negative_reviews": 2,
+        "avg_monthly_negative": 0.25,
+        "trend_direction": "Stable",
+        "slope": 0.048,
+        "percentage_change": 100,
+        "recent_months_avg": 0.5,
+        "early_months_avg": 0.0,
+        "highest_month": "May 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      },
+      "App Blocking": {
+        "total_negative_reviews": 34,
+        "avg_monthly_negative": 4.25,
+        "trend_direction": "Improving",
+        "slope": -0.167,
+        "percentage_change": 26.67,
+        "recent_months_avg": 4.75,
+        "early_months_avg": 3.75,
+        "highest_month": "June 2025",
+        "highest_count": 11,
+        "lowest_count": 0
+      },
+      "App Performance": {
+        "total_negative_reviews": 53,
+        "avg_monthly_negative": 6.62,
+        "trend_direction": "Improving",
+        "slope": -0.726,
+        "percentage_change": -34.38,
+        "recent_months_avg": 5.25,
+        "early_months_avg": 8.0,
+        "highest_month": "February 2025",
+        "highest_count": 11,
+        "lowest_count": 2
+      },
+      "App Reliability": {
+        "total_negative_reviews": 3,
+        "avg_monthly_negative": 0.38,
+        "trend_direction": "Stable",
+        "slope": 0.083,
+        "percentage_change": 100.0,
+        "recent_months_avg": 0.5,
+        "early_months_avg": 0.25,
+        "highest_month": "July 2025",
+        "highest_count": 2,
+        "lowest_count": 0
+      },
+      "App Usage": {
+        "total_negative_reviews": 4,
+        "avg_monthly_negative": 0.5,
+        "trend_direction": "Stable",
+        "slope": -0.095,
+        "percentage_change": -66.67,
+        "recent_months_avg": 0.25,
+        "early_months_avg": 0.75,
+        "highest_month": "January 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      },
+      "Approval & Permissions": {
+        "total_negative_reviews": 5,
+        "avg_monthly_negative": 0.62,
+        "trend_direction": "Stable",
+        "slope": -0.06,
+        "percentage_change": 50.0,
+        "recent_months_avg": 0.75,
+        "early_months_avg": 0.5,
+        "highest_month": "May 2025",
+        "highest_count": 2,
+        "lowest_count": 0
+      },
+      "Bypass & Circumvention": {
+        "total_negative_reviews": 1,
+        "avg_monthly_negative": 0.12,
+        "trend_direction": "Stable",
+        "slope": -0.036,
+        "percentage_change": -100.0,
+        "recent_months_avg": 0.0,
+        "early_months_avg": 0.25,
+        "highest_month": "March 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      },
+      "Customer Support": {
+        "total_negative_reviews": 4,
+        "avg_monthly_negative": 0.5,
+        "trend_direction": "Stable",
+        "slope": -0.095,
+        "percentage_change": -66.67,
+        "recent_months_avg": 0.25,
+        "early_months_avg": 0.75,
+        "highest_month": "January 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      },
+      "Devices": {
+        "total_negative_reviews": 43,
+        "avg_monthly_negative": 5.38,
+        "trend_direction": "Improving",
+        "slope": -0.964,
+        "percentage_change": -73.53,
+        "recent_months_avg": 2.25,
+        "early_months_avg": 8.5,
+        "highest_month": "March 2025",
+        "highest_count": 11,
+        "lowest_count": 1
+      },
+      "Feature Limitations": {
+        "total_negative_reviews": 5,
+        "avg_monthly_negative": 0.62,
+        "trend_direction": "Stable",
+        "slope": -0.06,
+        "percentage_change": -33.33,
+        "recent_months_avg": 0.5,
+        "early_months_avg": 0.75,
+        "highest_month": "January 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      },
+      "Forced Usage & App Dependency": {
+        "total_negative_reviews": 2,
+        "avg_monthly_negative": 0.25,
+        "trend_direction": "Stable",
+        "slope": 0.024,
+        "percentage_change": 100,
+        "recent_months_avg": 0.5,
+        "early_months_avg": 0.0,
+        "highest_month": "May 2025",
+        "highest_count": 2,
+        "lowest_count": 0
+      },
+      "Full Frustration": {
+        "total_negative_reviews": 25,
+        "avg_monthly_negative": 3.12,
+        "trend_direction": "Stable",
+        "slope": 0.012,
+        "percentage_change": -7.69,
+        "recent_months_avg": 3.0,
+        "early_months_avg": 3.25,
+        "highest_month": "February 2025",
+        "highest_count": 7,
+        "lowest_count": 1
+      },
+      "Game & Xbox Integration": {
+        "total_negative_reviews": 9,
+        "avg_monthly_negative": 1.12,
+        "trend_direction": "Improving",
+        "slope": -0.155,
+        "percentage_change": -50.0,
+        "recent_months_avg": 0.75,
+        "early_months_avg": 1.5,
+        "highest_month": "January 2025",
+        "highest_count": 2,
+        "lowest_count": 0
+      },
+      "Login & Account Issues": {
+        "total_negative_reviews": 22,
+        "avg_monthly_negative": 2.75,
+        "trend_direction": "Stable",
+        "slope": 0.0,
+        "percentage_change": -30.77,
+        "recent_months_avg": 2.25,
+        "early_months_avg": 3.25,
+        "highest_month": "April 2025",
+        "highest_count": 6,
+        "lowest_count": 1
+      },
+      "Notifications & Alerts": {
+        "total_negative_reviews": 12,
+        "avg_monthly_negative": 1.5,
+        "trend_direction": "Worsening",
+        "slope": 0.143,
+        "percentage_change": 40.0,
+        "recent_months_avg": 1.75,
+        "early_months_avg": 1.25,
+        "highest_month": "August 2025",
+        "highest_count": 3,
+        "lowest_count": 0
+      },
+      "Others": {
+        "total_negative_reviews": 76,
+        "avg_monthly_negative": 9.5,
+        "trend_direction": "Stable",
+        "slope": -0.095,
+        "percentage_change": 5.41,
+        "recent_months_avg": 9.75,
+        "early_months_avg": 9.25,
+        "highest_month": "February 2025",
+        "highest_count": 15,
+        "lowest_count": 4
+      },
+      "Parental Consent & Age Restriction": {
+        "total_negative_reviews": 2,
+        "avg_monthly_negative": 0.25,
+        "trend_direction": "Stable",
+        "slope": 0.024,
+        "percentage_change": 0.0,
+        "recent_months_avg": 0.25,
+        "early_months_avg": 0.25,
+        "highest_month": "April 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      },
+      "Screen Time": {
+        "total_negative_reviews": 33,
+        "avg_monthly_negative": 4.12,
+        "trend_direction": "Worsening",
+        "slope": 0.107,
+        "percentage_change": -5.88,
+        "recent_months_avg": 4.0,
+        "early_months_avg": 4.25,
+        "highest_month": "March 2025",
+        "highest_count": 7,
+        "lowest_count": 1
+      },
+      "Setup & Configuration": {
+        "total_negative_reviews": 7,
+        "avg_monthly_negative": 0.88,
+        "trend_direction": "Stable",
+        "slope": 0.083,
+        "percentage_change": 33.33,
+        "recent_months_avg": 1.0,
+        "early_months_avg": 0.75,
+        "highest_month": "February 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      },
+      "Spending and Purchase": {
+        "total_negative_reviews": 9,
+        "avg_monthly_negative": 1.12,
+        "trend_direction": "Improving",
+        "slope": -0.298,
+        "percentage_change": -87.5,
+        "recent_months_avg": 0.25,
+        "early_months_avg": 2.0,
+        "highest_month": "April 2025",
+        "highest_count": 4,
+        "lowest_count": 0
+      },
+      "Update Issues": {
+        "total_negative_reviews": 2,
+        "avg_monthly_negative": 0.25,
+        "trend_direction": "Improving",
+        "slope": -0.143,
+        "percentage_change": -100.0,
+        "recent_months_avg": 0.0,
+        "early_months_avg": 0.5,
+        "highest_month": "January 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      },
+      "User Interface": {
+        "total_negative_reviews": 2,
+        "avg_monthly_negative": 0.25,
+        "trend_direction": "Stable",
+        "slope": -0.048,
+        "percentage_change": 0.0,
+        "recent_months_avg": 0.25,
+        "early_months_avg": 0.25,
+        "highest_month": "January 2025",
+        "highest_count": 1,
+        "lowest_count": 0
+      }
+    },
+    "analysis_period": "12 months",
+    "negative_threshold": 3.0
+  }
+}

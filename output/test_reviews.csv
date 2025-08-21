@@ -1,0 +1,4 @@
+id,source,text,title,author,rating,date,url,sentiment,category,metadata_sentiment_polarity,metadata_sentiment_subjectivity,metadata_sentiment_confidence
+1,test,This app is terrible and crashes all the time. Very frustrating to use.,,TestUser1,1.0,,,Negative,App Performance,-0.76,1.0,0.76
+2,test,Great app! Works perfectly and very helpful for family management.,,TestUser2,5.0,,,Positive,,0.7333333333333334,0.6833333333333332,0.7333333333333334
+3,test,Screen time limits are not working properly. Kids can bypass them easily.,,TestUser3,2.0,,,Positive,,0.21666666666666667,0.4666666666666667,0.21666666666666667
