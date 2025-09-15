@@ -25,55 +25,65 @@ class PlayStoreDataSource(DataSource):
         """Get supported parameters for Play Store."""
         return ['app_id', 'lang', 'country', 'sort', 'count']
     
-    def fetch_reviews(self, query: str, limit: int = 100, **kwargs) -> List[Review]:
+    def fetch_reviews(self, query: str, limit: int = 2000, **kwargs) -> List[Review]:
         """
-        Fetch reviews from Google Play Store.
+        Fetch reviews from Google Play Store for the last 6 months.
         
         Args:
             query: App ID (e.g., 'com.microsoft.familysafety')
-            limit: Maximum number of reviews to fetch
+            limit: Maximum number of reviews to fetch (will fetch until 6 months back)
             **kwargs: Additional parameters (lang, country, sort)
             
         Returns:
-            List of Review objects
+            List of Review objects from last 6 months
         """
+        from datetime import datetime, timedelta
+        
         app_id = query if query else self.config.get('app_id')
         if not app_id:
             raise ValueError("App ID is required for Play Store reviews")
         
-        # Set default parameters
+        # Calculate 6 months ago
+        six_months_ago = datetime.now() - timedelta(days=180)
+        
+        # Set default parameters - fetch more to ensure we get 6 months of data
         params = {
             'lang': kwargs.get('lang', self.config.get('lang', 'en')),
             'country': kwargs.get('country', self.config.get('country', 'us')),
             'sort': kwargs.get('sort', Sort.NEWEST),
-            'count': min(limit, 500)  # Play Store API limit
+            'count': min(limit, 2000)  # Increased to get more data
         }
         
         try:
             # Fetch reviews from Play Store
             review_data, _ = reviews(app_id, **params)
             
-            # Convert to Review objects
+            # Convert to Review objects and filter by date
             reviews_list = []
             for item in review_data:
-                review_id = hashlib.md5(f"{app_id}_{item['content']}".encode()).hexdigest()
+                review_date = item.get('at')
                 
-                review = Review(
-                    id=review_id,
-                    source=self.source_name,
-                    text=item['content'],
-                    author=item.get('userName'),
-                    rating=float(item.get('score', 0)),
-                    date=item.get('at'),
-                    metadata={
-                        'app_id': app_id,
-                        'thumbs_up': item.get('thumbsUpCount', 0),
-                        'review_id': item.get('reviewId'),
-                        'version': item.get('appVersion')
-                    }
-                )
-                reviews_list.append(review)
+                # Filter reviews to last 6 months only
+                if review_date and review_date >= six_months_ago:
+                    review_id = hashlib.md5(f"{app_id}_{item['content']}".encode()).hexdigest()
+                    
+                    review = Review(
+                        id=review_id,
+                        source=self.source_name,
+                        text=item['content'],
+                        author=item.get('userName'),
+                        rating=float(item.get('score', 0)),
+                        date=review_date,
+                        metadata={
+                            'app_id': app_id,
+                            'thumbs_up': item.get('thumbsUpCount', 0),
+                            'review_id': item.get('reviewId'),
+                            'version': item.get('appVersion')
+                        }
+                    )
+                    reviews_list.append(review)
             
+            print(f"Filtered to {len(reviews_list)} reviews from last 6 months")
             return self.preprocess_reviews(reviews_list)
             
         except Exception as e:

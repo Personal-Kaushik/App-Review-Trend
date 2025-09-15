@@ -2,12 +2,30 @@
 Trend analysis module for tracking feature-based negative reviews over time.
 """
 import pandas as pd
+import numpy as np
+import json
+import os
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
 from collections import defaultdict
 import calendar
 
 from src.models.review import Review
+
+
+def convert_for_json(obj):
+    """Convert numpy/pandas types to Python native types for JSON serialization."""
+    if isinstance(obj, (np.integer, np.int64)):
+        return int(obj)
+    elif isinstance(obj, (np.floating, np.float64)):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, dict):
+        return {key: convert_for_json(value) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_for_json(item) for item in obj]
+    return obj
 
 
 class TrendAnalyzer:
@@ -187,7 +205,7 @@ class TrendAnalyzer:
         # Export trend analysis to JSON
         trend_json = os.path.join(output_dir, 'feature_trend_analysis.json')
         with open(trend_json, 'w', encoding='utf-8') as f:
-            json.dump({
+            data_to_export = {
                 'analysis_date': datetime.now().isoformat(),
                 'feature_trends': feature_trends,
                 'summary': {
@@ -196,22 +214,26 @@ class TrendAnalyzer:
                     'worsening_features': len([f for f in feature_trends.values() if f['trend_direction'] == 'Worsening']),
                     'stable_features': len([f for f in feature_trends.values() if f['trend_direction'] == 'Stable'])
                 }
-            }, f, indent=2, ensure_ascii=False)
+            }
+            # Convert all numpy/pandas types to JSON-serializable types
+            serializable_data = convert_for_json(data_to_export)
+            json.dump(serializable_data, f, indent=2, ensure_ascii=False)
         
         # Generate visualizations if requested
         saved_plots = []
+        feature_chart_results = {}
         if generate_visualizations:
             try:
-                from src.analysis.visualization import TrendVisualizer
+                from src.analysis.feature_charts import FeatureBarChartVisualizer
                 
-                print("Generating visualizations...")
-                visualizer = TrendVisualizer(output_dir)
-                saved_plots = visualizer.generate_all_visualizations(trend_df, feature_trends)
+                # Generate feature-specific bar charts only
+                print("Generating feature-specific bar charts...")
+                feature_visualizer = FeatureBarChartVisualizer(output_dir)
+                feature_chart_results = feature_visualizer.generate_all_feature_charts(
+                    trend_df, feature_trends, top_n=5)
                 
-                if saved_plots:
-                    print(f"Generated {len(saved_plots)} visualization files:")
-                    for plot_path in saved_plots:
-                        print(f"  - {os.path.basename(plot_path)}")
+                if feature_chart_results['individual_charts']:
+                    print(f"Generated {len(feature_chart_results['individual_charts'])} individual feature charts")
                 else:
                     print("No visualizations were generated.")
                     
@@ -220,6 +242,8 @@ class TrendAnalyzer:
                 print("Install matplotlib and seaborn to generate visualizations.")
             except Exception as e:
                 print(f"Error generating visualizations: {e}")
+                import traceback
+                traceback.print_exc()
         
         # Generate HTML dashboard
         try:

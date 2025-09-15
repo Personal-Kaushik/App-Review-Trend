@@ -15,7 +15,7 @@ data_sources:
     countries: ["us", "in", "gb", "ca", "au"]
     
   twitter:
-    enabled: false  # Disabled due to snscrape compatibility issues with Python 3.13
+    enabled: true
     default_query: '"Microsoft Family Safety" OR "Family Safety app" OR "Microsoft parental controls"'
     days_back: 120
     include_retweets: false
@@ -72,9 +72,9 @@ output:
   csv_filename: "reviews_analysis.csv"
   summary_filename: "analysis_summary.json"
   
-# Fetch Limits
+# Fetch Limits - Increased for 6 months of data
 limits:
-  playstore: 500
+  playstore: 2000  # Increased to get 6 months of reviews
   appstore: 200
   twitter: 100
   rss: 100

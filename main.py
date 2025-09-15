@@ -126,13 +126,15 @@ class ReviewAnalysisApp:
         
         return report
     
-    def export_results(self, reviews: List[Review], report: Dict[str, Any]) -> None:
+    def export_results(self, reviews: List[Review], report: Dict[str, Any], 
+                      start_web_dashboard: bool = False) -> None:
         """
-        Export results to files.
+        Export results to files and optionally start web dashboard.
         
         Args:
             reviews: List of analyzed Review objects
             report: Analysis report
+            start_web_dashboard: Whether to start the interactive web dashboard
         """
         print("\nExporting results...")
         
@@ -143,9 +145,14 @@ class ReviewAnalysisApp:
         self.analyzer.export_to_csv(reviews, csv_filename)
         
         # Export trend analysis first (this preserves DataFrame structure)
+        dashboard_opened = False
         if 'trend_analysis' in report:
-            self.analyzer.export_trend_analysis(report['trend_analysis'], self.output_dir, 
-                                              generate_visualizations=True, open_in_browser=True)
+            dashboard_opened = self.analyzer.export_trend_analysis(
+                report['trend_analysis'], 
+                self.output_dir, 
+                generate_visualizations=True, 
+                open_in_browser=not start_web_dashboard  # Don't open static if web dashboard will start
+            )
         
         # Export summary to JSON (after trend analysis to avoid DataFrame serialization issues)
         summary_filename = os.path.join(self.output_dir, output_config.get('summary_filename', 'analysis_summary.json'))
@@ -157,7 +164,38 @@ class ReviewAnalysisApp:
                 if 'monthly_data' in trend_data and hasattr(trend_data['monthly_data'], 'to_dict'):
                     trend_data['monthly_data'] = trend_data['monthly_data'].to_dict('records')
             
+            # Convert all numpy/pandas types to JSON-serializable types
+            def convert_types(obj):
+                import numpy as np
+                if isinstance(obj, (np.integer, np.int64)):
+                    return int(obj)
+                elif isinstance(obj, (np.floating, np.float64)):
+                    return float(obj)
+                elif isinstance(obj, np.ndarray):
+                    return obj.tolist()
+                elif isinstance(obj, dict):
+                    return {key: convert_types(value) for key, value in obj.items()}
+                elif isinstance(obj, list):
+                    return [convert_types(item) for item in obj]
+                return obj
+            
+            serializable_report = convert_types(serializable_report)
             json.dump(serializable_report, f, indent=2, ensure_ascii=False)
+        
+        # Start interactive web dashboard if requested
+        if start_web_dashboard:
+            print("\n🚀 Starting interactive web dashboard...")
+            try:
+                from web_dashboard import create_and_run_dashboard
+                print("📊 Interactive dashboard starting...")
+                print("🌐 This will open your browser automatically")
+                create_and_run_dashboard(self.output_dir)
+            except ImportError as e:
+                print(f"❌ Could not start web dashboard: {e}")
+                print("📁 Static HTML dashboard available in output directory")
+            except Exception as e:
+                print(f"❌ Error starting web dashboard: {e}")
+                print("📁 Static HTML dashboard available in output directory")
         
         print(f"Results exported to {self.output_dir}")
     
@@ -191,14 +229,17 @@ class ReviewAnalysisApp:
         print("=" * 30)
         print("🌐 Interactive dashboard opened in browser for detailed analysis!")
     
-    def run(self, custom_queries: Optional[Dict[str, str]] = None) -> None:
+    def run(self, custom_queries: Optional[Dict[str, str]] = None, 
+            interactive_dashboard: bool = False) -> None:
         """
         Run the complete analysis pipeline with trend analysis and dashboard.
         
         Args:
             custom_queries: Custom queries for each data source
+            interactive_dashboard: Whether to start interactive web dashboard
         """
-        print("🚀 Starting Review Analysis System with Trend Dashboard...")
+        dashboard_type = "Interactive Web Dashboard" if interactive_dashboard else "Static HTML Dashboard"
+        print(f"🚀 Starting Review Analysis System with {dashboard_type}...")
         
         # Fetch reviews
         reviews = self.fetch_all_reviews(custom_queries)
@@ -213,13 +254,19 @@ class ReviewAnalysisApp:
         # Generate report with trend analysis
         report = self.generate_report(analyzed_reviews)
         
-        # Export results (this will generate visualizations and open dashboard)
-        self.export_results(analyzed_reviews, report)
+        # Export results (this will generate visualizations and optionally start web dashboard)
+        self.export_results(analyzed_reviews, report, start_web_dashboard=interactive_dashboard)
         
         # Print summary
         self.print_summary(report)
         
-        print("\n🎯 Analysis complete! Dashboard should be open in your browser.")
+        if interactive_dashboard:
+            print("\n🌐 Interactive web dashboard is running!")
+            print("📊 Access your dashboard at: http://localhost:5000")
+            print("⚠️  Press Ctrl+C to stop the server")
+        else:
+            print("\n🎯 Analysis complete! Dashboard should be open in your browser.")
+        
         print(f"📁 All files saved to: {os.path.abspath(self.output_dir)}")
         
         # Show key insights
@@ -267,24 +314,37 @@ class ReviewAnalysisApp:
 
 
 def main():
-    """Main function - Run complete analysis with trend dashboard."""
+    """Main function - Run complete analysis with dashboard options."""
     print("🎯 AI-Powered Review Analysis Platform")
     print("=" * 50)
     
     # Create app instance
     app = ReviewAnalysisApp()
     
-    # Configure data source queries
-    custom_queries = {
-        'playstore': 'com.microsoft.familysafety',
-        'appstore': '1519844643',
-        'twitter': '"Microsoft Family Safety" OR "Family Safety app" OR "Microsoft parental controls"',
-        'rss': 'Microsoft Family Safety',
-        'news': 'Microsoft Family Safety issue OR complaint OR review'
-    }
+    # Configure data source queries (empty to use config.yaml defaults)
+    custom_queries = {}
     
-    # Run complete analysis with dashboard
-    app.run(custom_queries)
+    # Ask user for dashboard preference
+    print("\n📊 Dashboard Options:")
+    print("1. Interactive Web Dashboard (localhost:5000) - Real-time, filterable")
+    print("2. Static HTML Dashboard - Traditional, opens in browser")
+    
+    while True:
+        choice = input("\nChoose dashboard type (1 for Interactive, 2 for Static, or press Enter for Interactive): ").strip()
+        
+        if choice == '' or choice == '1':
+            interactive_dashboard = True
+            print("✅ Starting with Interactive Web Dashboard")
+            break
+        elif choice == '2':
+            interactive_dashboard = False
+            print("✅ Starting with Static HTML Dashboard")
+            break
+        else:
+            print("❌ Please enter 1, 2, or press Enter")
+    
+    # Run complete analysis with selected dashboard
+    app.run(custom_queries, interactive_dashboard=interactive_dashboard)
 
 
 if __name__ == "__main__":
