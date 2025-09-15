@@ -20,15 +20,19 @@ from config import ConfigLoader
 class ReviewAnalysisApp:
     """Main application class for review analysis."""
     
-    def __init__(self, config_path: Optional[str] = None):
+    def __init__(self, product_name: str = None):
         """
         Initialize the application.
         
         Args:
-            config_path: Path to configuration file
+            product_name: Name of the product to analyze
         """
-        self.config_loader = ConfigLoader(config_path)
+        self.product_name = product_name
+        self.config_loader = ConfigLoader(product_name=product_name)
         self.config = self.config_loader.load_config()
+        
+        # Get product info for display
+        self.product_info = self.config_loader.get_product_info()
         
         # Initialize analyzer
         analysis_config = self.config_loader.get_analysis_config()
@@ -40,6 +44,11 @@ class ReviewAnalysisApp:
         # Create output directory
         output_config = self.config_loader.get_output_config()
         self.output_dir = output_config.get('directory', 'output')
+        
+        # Add product name to output directory if specified
+        if product_name:
+            self.output_dir = os.path.join(self.output_dir, product_name.replace('_', '-'))
+        
         os.makedirs(self.output_dir, exist_ok=True)
     
     def fetch_all_reviews(self, custom_queries: Optional[Dict[str, str]] = None) -> List[Review]:
@@ -239,7 +248,11 @@ class ReviewAnalysisApp:
             interactive_dashboard: Whether to start interactive web dashboard
         """
         dashboard_type = "Interactive Web Dashboard" if interactive_dashboard else "Static HTML Dashboard"
-        print(f"🚀 Starting Review Analysis System with {dashboard_type}...")
+        product_name = self.product_info.get('name', self.product_name or 'Unknown Product')
+        
+        print(f"\n🚀 Starting Review Analysis for {product_name}")
+        print(f"📊 Dashboard: {dashboard_type}")
+        print("=" * 60)
         
         # Fetch reviews
         reviews = self.fetch_all_reviews(custom_queries)
@@ -261,11 +274,11 @@ class ReviewAnalysisApp:
         self.print_summary(report)
         
         if interactive_dashboard:
-            print("\n🌐 Interactive web dashboard is running!")
+            print(f"\n🌐 Interactive web dashboard is running for {product_name}!")
             print("📊 Access your dashboard at: http://localhost:5000")
             print("⚠️  Press Ctrl+C to stop the server")
         else:
-            print("\n🎯 Analysis complete! Dashboard should be open in your browser.")
+            print(f"\n🎯 Analysis complete for {product_name}! Dashboard should be open in your browser.")
         
         print(f"📁 All files saved to: {os.path.abspath(self.output_dir)}")
         
@@ -314,14 +327,59 @@ class ReviewAnalysisApp:
 
 
 def main():
-    """Main function - Run complete analysis with dashboard options."""
+    """Main function - Run complete analysis with product and dashboard options."""
     print("🎯 AI-Powered Review Analysis Platform")
     print("=" * 50)
     
-    # Create app instance
-    app = ReviewAnalysisApp()
+    # Get available products
+    temp_loader = ConfigLoader()
+    available_products = temp_loader.get_available_products()
     
-    # Configure data source queries (empty to use config.yaml defaults)
+    if not available_products:
+        print("❌ No product configurations found!")
+        print("Please create product configuration files in the config/products/ directory.")
+        return
+    
+    # Product selection
+    print("\n📦 Available Products:")
+    for i, product in enumerate(available_products, 1):
+        # Get product info for display
+        product_info = temp_loader.get_product_info(product)
+        product_name = product_info.get('name', product.replace('_', ' ').title())
+        company = product_info.get('company', 'Unknown')
+        description = product_info.get('description', '')
+        
+        print(f"  {i}. {product_name} ({company})")
+        if description:
+            print(f"     {description}")
+    
+    # Ask user to select product
+    while True:
+        try:
+            choice = input(f"\nSelect product (1-{len(available_products)}): ").strip()
+            product_index = int(choice) - 1
+            
+            if 0 <= product_index < len(available_products):
+                selected_product = available_products[product_index]
+                break
+            else:
+                print(f"❌ Please enter a number between 1 and {len(available_products)}")
+        except ValueError:
+            print("❌ Please enter a valid number")
+    
+    # Create app instance with selected product
+    app = ReviewAnalysisApp(selected_product)
+    
+    # Display selected product info
+    product_info = app.product_info
+    if product_info:
+        print(f"\n✅ Selected: {product_info.get('name', selected_product)}")
+        if product_info.get('company'):
+            print(f"   Company: {product_info['company']}")
+        if product_info.get('description'):
+            print(f"   Description: {product_info['description']}")
+    
+    # Configure data source queries (empty to use product config)
     custom_queries = {}
     
     # Ask user for dashboard preference

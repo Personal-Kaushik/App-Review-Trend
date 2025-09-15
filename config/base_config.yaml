@@ -1,0 +1,57 @@
+# Base Configuration Template
+# This file contains default settings that apply to all products
+
+# Global Analysis Settings
+analysis:
+  sentiment_threshold: -0.05  # Threshold for negative sentiment
+  data_collection_period_months: 6  # Number of months to collect data for
+  
+# Output Settings
+output:
+  directory: "output"
+  csv_filename: "reviews_analysis.csv"
+  summary_filename: "analysis_summary.json"
+  
+# Default Fetch Limits (can be overridden per product)
+default_limits:
+  playstore: 2000
+  appstore: 200
+  twitter: 100
+  rss: 100
+  news: 100
+
+# Default Data Source Settings (can be overridden per product)
+default_data_source_settings:
+  playstore:
+    lang: "en"
+    country: "us"
+    
+  appstore:
+    countries: ["us", "in", "gb", "ca", "au"]
+    
+  twitter:
+    days_back: 120
+    include_retweets: false
+    
+  rss:
+    days_back: 120
+    
+  news:
+    days_back: 120
+    search_results: 100
+
+# Common Feature Categories (applicable to most apps)
+common_categories:
+  "App Performance": ["slow", "lag", "crash", "performance", "bug", "freeze", "loading", "responsive"]
+  "App Reliability": ["unstable", "reliable", "reliability", "stability", "fails", "failure", "broken"]
+  "Login & Account Issues": ["login", "sign in", "account", "authentication", "credentials", "password", "email"]
+  "Customer Support": ["support", "help", "contact", "response", "ticket", "no reply", "assistance"]
+  "Privacy Concerns": ["privacy", "data", "tracking", "monitoring", "spy", "surveillance"]
+  "User Interface": ["interface", "design", "layout", "navigation", "UI", "UX", "usability"]
+  "Setup & Configuration": ["setup", "configuration", "install", "initial setup", "settings"]
+  "Notifications & Alerts": ["notification", "alert", "reminder", "message", "push"]
+  "Cross-Platform Sync": ["sync", "synchronization", "not updating", "not reflecting", "delay", "real-time"]
+  "Update Issues": ["update", "after update", "new version", "latest version"]
+  "Full Frustration": ["hate", "terrible", "worst", "awful", "useless", "frustrating", "annoying", "disappointed"]
+  "Feature Limitations": ["missing feature", "can't do", "not available", "removed", "limited", "lack of"]
+  "Spending and Purchase": ["purchase", "paid", "premium", "subscription", "spending", "billing", "pricing"]

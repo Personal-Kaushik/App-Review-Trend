@@ -1,0 +1,63 @@
+# Microsoft Outlook Product Configuration
+product:
+  name: "Microsoft Outlook"
+  description: "Email and calendar management application"
+  company: "Microsoft"
+
+# Product-specific App Store identifiers
+app_identifiers:
+  playstore: "com.microsoft.office.outlook"
+  appstore: "951937596"
+
+# Product-specific search terms and queries
+search_terms:
+  twitter:
+    primary_query: '"Microsoft Outlook" OR "Outlook app" OR "Outlook mobile"'
+    additional_keywords: ["outlook", "email", "calendar", "microsoft email"]
+    
+  rss:
+    feed_urls:
+      - "https://news.google.com/rss/search?q=\"Microsoft+Outlook\"&hl=en-US&gl=US&ceid=US:en"
+      - "https://news.google.com/rss/search?q=\"Outlook+mobile+app\"&hl=en-US&gl=US&ceid=US:en"
+    
+  news:
+    query: "Microsoft Outlook issue OR complaint OR review OR email problem"
+    additional_queries: 
+      - "Outlook app not working"
+      - "Outlook sync issues"
+
+# Product-specific feature categories
+categories:
+  "Email Management": ["email", "inbox", "compose", "send", "receive", "mail", "message"]
+  "Calendar & Scheduling": ["calendar", "meeting", "appointment", "schedule", "event", "reminder"]
+  "Sync & Connectivity": ["sync", "synchronization", "exchange", "office 365", "connectivity", "server"]
+  "Search & Organization": ["search", "folder", "organize", "filter", "sort", "archive"]
+  "Attachments & Files": ["attachment", "file", "document", "photo", "image", "pdf"]
+  "Notifications & Alerts": ["notification", "alert", "badge", "push notification", "sound"]
+  "Security & Authentication": ["security", "authentication", "two factor", "2FA", "password", "login"]
+  "Contact Management": ["contact", "address book", "people", "directory", "phonebook"]
+  "Mobile Experience": ["mobile", "phone", "tablet", "touch", "gesture", "responsive"]
+  "Battery & Performance": ["battery", "drain", "power", "consumption", "performance", "speed"]
+  "Offline Access": ["offline", "no internet", "airplane mode", "cached", "local"]
+  "Integration Issues": ["teams", "onedrive", "sharepoint", "office", "integration", "compatibility"]
+
+# Data source configuration overrides
+data_sources:
+  playstore:
+    enabled: true
+  appstore:
+    enabled: true
+  twitter:
+    enabled: true
+  rss:
+    enabled: true
+  news:
+    enabled: true
+
+# Fetch limits overrides
+limits:
+  playstore: 2500
+  appstore: 400
+  twitter: 200
+  rss: 150
+  news: 150

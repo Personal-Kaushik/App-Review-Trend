@@ -1,0 +1,65 @@
+# Microsoft Family Safety Product Configuration
+product:
+  name: "Microsoft Family Safety"
+  description: "Parental control and family management application"
+  company: "Microsoft"
+
+# Product-specific App Store identifiers
+app_identifiers:
+  playstore: "com.microsoft.familysafety"
+  appstore: "1519844643"
+
+# Product-specific search terms and queries
+search_terms:
+  twitter:
+    primary_query: '"Microsoft Family Safety" OR "Family Safety app" OR "Microsoft parental controls"'
+    additional_keywords: ["family safety", "parental controls", "screen time", "microsoft family"]
+    
+  rss:
+    feed_urls:
+      - "https://news.google.com/rss/search?q=\"Microsoft+Family+Safety\"&hl=en-IN&gl=IN&ceid=IN:en"
+      - "https://news.google.com/rss/search?q=\"parental+controls+microsoft\"&hl=en-US&gl=US&ceid=US:en"
+    
+  news:
+    query: "Microsoft Family Safety issue OR complaint OR review OR parental control"
+    additional_queries: 
+      - "Microsoft Family Safety bug"
+      - "parental controls not working"
+
+# Product-specific feature categories
+categories:
+  "Screen Time": ["screen time", "time limit", "time tracking", "usage time", "daily limit"]
+  "App Usage": ["app usage", "usage report", "usage tracking", "activity report", "app monitoring"]
+  "App Blocking": ["block", "blocking", "restriction", "access control", "app restriction"]
+  "Web Filtering": ["web filter", "web filtering", "filtering", "safe browsing", "website blocking"]
+  "Devices": ["device", "phone", "tablet", "tracking", "device management", "location"]
+  "Parental Consent & Age Restriction": ["parental consent", "consent", "approval", "age restriction", "age limit", "age control"]
+  "Bypass & Circumvention": ["bypass", "disable", "turn off", "workaround", "hack", "override", "ignore"]
+  "Child Account Management": ["child account", "add child", "manage child", "child profile", "family member"]
+  "Game & Xbox Integration": ["xbox", "game", "minecraft", "console", "play", "gaming", "xbox live"]
+  "Forced Usage & App Dependency": ["forced", "have to use", "required", "mandatory", "can't avoid"]
+  "Account Linking & Sharing": ["share", "link", "family member", "office", "account sharing", "microsoft account"]
+  "Time Propagation & Sync Delay": ["delay", "not updating", "not reflecting", "takes time", "propagate", "sync delay"]
+  "Add Money": ["add money", "in-app purchase", "buy", "payment", "add balance", "billing", "allowance"]
+  "Approval & Permissions": ["approve", "approval", "permission", "request", "grant access", "extra time"]
+
+# Data source configuration overrides
+data_sources:
+  playstore:
+    enabled: true
+  appstore:
+    enabled: true
+  twitter:
+    enabled: true
+  rss:
+    enabled: true
+  news:
+    enabled: true
+
+# Fetch limits overrides (if different from defaults)
+limits:
+  playstore: 2000
+  appstore: 300
+  twitter: 150
+  rss: 100
+  news: 100
