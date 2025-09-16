@@ -10,6 +10,7 @@ from typing import Optional, Dict, Any
 class Review:
     """
     Standardized review data model that all data sources must conform to.
+    Enhanced with AI categorization support.
     """
     id: str
     source: str  # 'playstore', 'appstore', 'twitter', 'rss', 'news'
@@ -21,6 +22,8 @@ class Review:
     url: Optional[str] = None
     sentiment: Optional[str] = None
     category: Optional[str] = None
+    category_confidence: Optional[float] = None  # Confidence score for categorization
+    categorization_method: Optional[str] = None  # 'ai', 'keyword', 'manual'
     metadata: Optional[Dict[str, Any]] = None
     
     def __post_init__(self):
@@ -51,6 +54,8 @@ class Review:
             'url': self.url,
             'sentiment': self.sentiment,
             'category': self.category,
+            'category_confidence': self.category_confidence,
+            'categorization_method': self.categorization_method,
             'metadata': self.metadata
         }
     

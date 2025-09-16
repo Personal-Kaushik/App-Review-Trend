@@ -85,13 +85,35 @@ class InteractiveDashboard:
             worsening_count = sum(1 for data in self.feature_trends.values() if data['trend_direction'] == 'Worsening')
             stable_count = sum(1 for data in self.feature_trends.values() if data['trend_direction'] == 'Stable')
             
+            # Get product information from the loaded data
+            product_name = self.data.get('product_name', 'Unknown Product') if self.data else 'Unknown Product'
+            
             return jsonify({
                 'total_features': total_features,
                 'total_negative_reviews': total_negative_reviews,
                 'improving_count': improving_count,
                 'worsening_count': worsening_count,
-                'stable_count': stable_count
+                'stable_count': stable_count,
+                'product_name': product_name,
+                'output_directory': self.output_dir
             })
+        
+        @self.app.route('/api/reload-data')
+        def reload_data():
+            """API endpoint to reload data from output directory."""
+            try:
+                self._load_data()
+                return jsonify({
+                    'success': True,
+                    'message': 'Data reloaded successfully',
+                    'features_count': len(self.feature_trends),
+                    'product_name': self.data.get('product_name', 'Unknown Product') if self.data else 'Unknown Product'
+                })
+            except Exception as e:
+                return jsonify({
+                    'success': False,
+                    'error': str(e)
+                })
         
         @self.app.route('/api/plotly-chart/<chart_type>')
         def get_plotly_chart(chart_type):

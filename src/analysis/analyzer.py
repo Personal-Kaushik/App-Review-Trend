@@ -12,25 +12,28 @@ from src.analysis.trend_analysis import TrendAnalyzer
 
 
 class ReviewAnalyzer:
-    """Main analyzer class that combines all analysis functionality."""
+    """Main analyzer class that combines all analysis functionality with AI support."""
     
     def __init__(self, 
                  sentiment_threshold: float = -0.05,
-                 categories: Optional[Dict[str, List[str]]] = None):
+                 categories: Optional[Dict[str, Any]] = None,
+                 product_name: str = "Unknown Product"):
         """
-        Initialize the analyzer.
+        Initialize the analyzer with AI categorization support.
         
         Args:
             sentiment_threshold: Threshold for negative sentiment classification
-            categories: Custom categories for classification
+            categories: Custom categories for classification (AI format or legacy keywords)
+            product_name: Name of the product for AI categorization
         """
         self.sentiment_analyzer = SentimentAnalyzer(sentiment_threshold)
-        self.categorizer = ReviewCategorizer(categories)
+        self.categorizer = ReviewCategorizer(categories, product_name)
         self.trend_analyzer = TrendAnalyzer()
+        self.product_name = product_name
     
     def analyze_reviews(self, reviews: List[Review]) -> List[Review]:
         """
-        Perform complete analysis on reviews.
+        Perform complete analysis on reviews with AI categorization.
         
         Args:
             reviews: List of Review objects
@@ -38,31 +41,44 @@ class ReviewAnalyzer:
         Returns:
             List of analyzed Review objects
         """
+        if not reviews:
+            return reviews
+        
+        print(f"🔍 Starting analysis of {len(reviews)} reviews for {self.product_name}")
+        
         # Perform sentiment analysis
+        print("📊 Analyzing sentiment...")
         reviews = self.sentiment_analyzer.analyze_reviews(reviews)
         
+        # Get categorization status
+        status = self.categorizer.get_ai_categorization_status()
+        print(f"🤖 Categorization: {status['categorizer_type']}")
+        
         # Perform categorization on all reviews (not just negative ones)
+        print("🏷️ Categorizing reviews...")
         reviews = self.categorizer.categorize_reviews(reviews, filter_sentiment=None)
         
+        print("✅ Analysis complete!")
         return reviews
     
     def get_analysis_summary(self, reviews: List[Review]) -> Dict[str, Any]:
         """
-        Get summary of analysis results.
+        Get comprehensive summary of analysis results with AI metrics.
         
         Args:
             reviews: List of analyzed Review objects
             
         Returns:
-            Dictionary with analysis summary
+            Dictionary with detailed analysis summary
         """
         total_reviews = len(reviews)
         
         # Sentiment distribution
         sentiment_dist = self.sentiment_analyzer.get_sentiment_distribution(reviews)
         
-        # Category distribution (for negative reviews)
+        # Enhanced category distribution with AI metrics
         category_dist = self.categorizer.get_category_distribution(reviews, filter_sentiment='Negative')
+        all_category_dist = self.categorizer.get_category_distribution(reviews, filter_sentiment=None)
         
         # Source distribution
         source_dist = {}
@@ -77,13 +93,19 @@ class ReviewAnalyzer:
             'total_days': (max(dates) - min(dates)).days if len(dates) > 1 else 0
         }
         
+        # AI categorization metrics
+        ai_status = self.categorizer.get_ai_categorization_status()
+        
         return {
             'total_reviews': total_reviews,
+            'product_name': self.product_name,
             'sentiment_distribution': sentiment_dist,
-            'category_distribution': category_dist,
+            'category_distribution_negative': category_dist,
+            'category_distribution_all': all_category_dist,
             'source_distribution': source_dist,
             'date_range': date_range,
-            'negative_review_percentage': (sentiment_dist.get('Negative', 0) / total_reviews * 100) if total_reviews > 0 else 0
+            'negative_review_percentage': (sentiment_dist.get('Negative', 0) / total_reviews * 100) if total_reviews > 0 else 0,
+            'ai_categorization_status': ai_status
         }
     
     def export_to_dataframe(self, reviews: List[Review]) -> pd.DataFrame:
@@ -109,7 +131,9 @@ class ReviewAnalyzer:
                 'date': review.date.isoformat() if review.date else None,
                 'url': review.url,
                 'sentiment': review.sentiment,
-                'category': review.category
+                'category': review.category,
+                'category_confidence': getattr(review, 'category_confidence', None),
+                'categorization_method': getattr(review, 'categorization_method', None)
             }
             
             # Add metadata as separate columns
@@ -187,18 +211,27 @@ class ReviewAnalyzer:
         negative_reviews = [r for r in reviews if r.sentiment == 'Negative']
         category_dist = self.categorizer.get_category_distribution(negative_reviews)
         
+        # Extract category counts from the enhanced distribution format
+        category_counts = category_dist.get('category_counts', {})
+        
         # Sort by count and get top N
-        sorted_categories = sorted(category_dist.items(), key=lambda x: x[1], reverse=True)[:top_n]
+        sorted_categories = sorted(category_counts.items(), key=lambda x: x[1], reverse=True)[:top_n]
         
         issues = []
         for category, count in sorted_categories:
             # Get sample reviews for this category
             sample_reviews = [r for r in negative_reviews if r.category == category][:3]
             
+            # Get average confidence if available
+            avg_confidence = category_dist.get('category_avg_confidence', {}).get(category, 0.5)
+            categorization_methods = category_dist.get('category_methods', {}).get(category, {})
+            
             issues.append({
                 'category': category,
                 'count': count,
                 'percentage': (count / len(negative_reviews) * 100) if negative_reviews else 0,
+                'avg_confidence': avg_confidence,
+                'categorization_methods': categorization_methods,
                 'sample_reviews': [
                     {
                         'text': r.text[:200] + '...' if len(r.text) > 200 else r.text,

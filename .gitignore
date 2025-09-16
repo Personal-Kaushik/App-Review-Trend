@@ -104,6 +104,17 @@ ENV/
 env.bak/
 venv.bak/
 
+# Generated output files (regenerated each time)
+output/
+cache/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
 # Spyder project settings
 .spyderproject
 .spyproject

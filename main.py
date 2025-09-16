@@ -34,11 +34,12 @@ class ReviewAnalysisApp:
         # Get product info for display
         self.product_info = self.config_loader.get_product_info()
         
-        # Initialize analyzer
+        # Initialize analyzer with product name for AI categorization
         analysis_config = self.config_loader.get_analysis_config()
         self.analyzer = ReviewAnalyzer(
             sentiment_threshold=analysis_config.get('sentiment_threshold', -0.05),
-            categories=analysis_config.get('categories')
+            categories=analysis_config.get('categories'),
+            product_name=self.product_info.get('name', product_name or 'Unknown Product')
         )
         
         # Create output directory
@@ -346,12 +347,8 @@ def main():
         # Get product info for display
         product_info = temp_loader.get_product_info(product)
         product_name = product_info.get('name', product.replace('_', ' ').title())
-        company = product_info.get('company', 'Unknown')
-        description = product_info.get('description', '')
         
-        print(f"  {i}. {product_name} ({company})")
-        if description:
-            print(f"     {description}")
+        print(f"  {i}. {product_name}")
     
     # Ask user to select product
     while True:
@@ -374,34 +371,15 @@ def main():
     product_info = app.product_info
     if product_info:
         print(f"\n✅ Selected: {product_info.get('name', selected_product)}")
-        if product_info.get('company'):
-            print(f"   Company: {product_info['company']}")
-        if product_info.get('description'):
-            print(f"   Description: {product_info['description']}")
     
     # Configure data source queries (empty to use product config)
     custom_queries = {}
     
-    # Ask user for dashboard preference
-    print("\n📊 Dashboard Options:")
-    print("1. Interactive Web Dashboard (localhost:5000) - Real-time, filterable")
-    print("2. Static HTML Dashboard - Traditional, opens in browser")
+    # Always use Interactive Web Dashboard
+    interactive_dashboard = True
+    print("✅ Starting with Interactive Web Dashboard")
     
-    while True:
-        choice = input("\nChoose dashboard type (1 for Interactive, 2 for Static, or press Enter for Interactive): ").strip()
-        
-        if choice == '' or choice == '1':
-            interactive_dashboard = True
-            print("✅ Starting with Interactive Web Dashboard")
-            break
-        elif choice == '2':
-            interactive_dashboard = False
-            print("✅ Starting with Static HTML Dashboard")
-            break
-        else:
-            print("❌ Please enter 1, 2, or press Enter")
-    
-    # Run complete analysis with selected dashboard
+    # Run complete analysis with interactive dashboard
     app.run(custom_queries, interactive_dashboard=interactive_dashboard)
 
 

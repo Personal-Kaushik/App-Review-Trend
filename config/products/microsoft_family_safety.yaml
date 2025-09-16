@@ -1,4 +1,4 @@
-# Microsoft Family Safety Product Configuration
+# Microsoft Family Safety Product Configuration (AI-Enhanced)
 product:
   name: "Microsoft Family Safety"
   description: "Parental control and family management application"
@@ -26,24 +26,144 @@ search_terms:
       - "Microsoft Family Safety bug"
       - "parental controls not working"
 
-# Product-specific feature categories
+# AI-Enhanced Feature Categories
+# Each category includes description, examples, and fallback keywords
 categories:
-  "Screen Time": ["screen time", "time limit", "time tracking", "usage time", "daily limit"]
-  "App Usage": ["app usage", "usage report", "usage tracking", "activity report", "app monitoring"]
-  "App Blocking": ["block", "blocking", "restriction", "access control", "app restriction"]
-  "Web Filtering": ["web filter", "web filtering", "filtering", "safe browsing", "website blocking"]
-  "Devices": ["device", "phone", "tablet", "tracking", "device management", "location"]
-  "Parental Consent & Age Restriction": ["parental consent", "consent", "approval", "age restriction", "age limit", "age control"]
-  "Bypass & Circumvention": ["bypass", "disable", "turn off", "workaround", "hack", "override", "ignore"]
-  "Child Account Management": ["child account", "add child", "manage child", "child profile", "family member"]
-  "Game & Xbox Integration": ["xbox", "game", "minecraft", "console", "play", "gaming", "xbox live"]
-  "Forced Usage & App Dependency": ["forced", "have to use", "required", "mandatory", "can't avoid"]
-  "Account Linking & Sharing": ["share", "link", "family member", "office", "account sharing", "microsoft account"]
-  "Time Propagation & Sync Delay": ["delay", "not updating", "not reflecting", "takes time", "propagate", "sync delay"]
-  "Add Money": ["add money", "in-app purchase", "buy", "payment", "add balance", "billing", "allowance"]
-  "Approval & Permissions": ["approve", "approval", "permission", "request", "grant access", "extra time"]
+  "Screen Time Management":
+    description: "Issues with screen time limits, tracking, time management, and daily usage controls"
+    examples:
+      - "Screen time limits not working properly"
+      - "Daily time limits are being ignored by the app"
+      - "Time tracking shows incorrect usage data"
+      - "Cannot set proper bedtime schedules"
+    keywords: ["screen time", "time limit", "time tracking", "usage time", "daily limit", "bedtime"]
 
-# Data source configuration overrides
+  "App Usage & Monitoring":
+    description: "Problems with app usage tracking, activity reports, and monitoring features"
+    examples:
+      - "App usage reports are not accurate"
+      - "Activity monitoring is not working"
+      - "Usage data is not syncing properly"
+      - "Cannot see what apps my child is using"
+    keywords: ["app usage", "usage report", "usage tracking", "activity report", "app monitoring"]
+
+  "App Blocking & Restrictions":
+    description: "Issues with blocking apps, setting restrictions, and access control"
+    examples:
+      - "App blocking feature is not working"
+      - "Restricted apps are still accessible to my child"
+      - "Cannot block specific games or social media apps"
+      - "Blocked apps can be easily bypassed"
+    keywords: ["block", "blocking", "restriction", "access control", "app restriction"]
+
+  "Web Filtering & Safe Browsing":
+    description: "Problems with web content filtering, website blocking, and safe browsing controls"
+    examples:
+      - "Web filtering is not working on browsers"
+      - "Inappropriate websites are not being blocked"
+      - "Safe search is not enabled properly"
+      - "Website restrictions are being bypassed"
+    keywords: ["web filter", "web filtering", "filtering", "safe browsing", "website blocking"]
+
+  "Device Management & Location":
+    description: "Issues with device tracking, location services, and managing multiple devices"
+    examples:
+      - "Cannot track my child's device location"
+      - "Device location is not updating"
+      - "Multiple devices are not syncing properly"
+      - "Device management features are not working"
+    keywords: ["device", "phone", "tablet", "tracking", "device management", "location"]
+
+  "Parental Consent & Age Controls":
+    description: "Problems with parental consent requests, age restrictions, and approval processes"
+    examples:
+      - "Parental consent requests are not working"
+      - "Age restrictions are not being enforced"
+      - "Approval notifications are not coming through"
+      - "Cannot set appropriate age limits"
+    keywords: ["parental consent", "consent", "approval", "age restriction", "age limit", "age control"]
+
+  "Bypass & Security Issues":
+    description: "Cases where children bypass restrictions, disable controls, or find workarounds"
+    examples:
+      - "My child found a way to bypass all restrictions"
+      - "Kids can easily disable Family Safety features"
+      - "Workarounds are being shared online"
+      - "Security measures are not effective"
+    keywords: ["bypass", "disable", "turn off", "workaround", "hack", "override", "ignore"]
+
+  "Account Management":
+    description: "Issues with child account creation, family member management, and account settings"
+    examples:
+      - "Cannot add a child account properly"
+      - "Family member management is confusing"
+      - "Child profile settings are not saving"
+      - "Account linking is not working"
+    keywords: ["child account", "add child", "manage child", "child profile", "family member"]
+
+  "Gaming & Xbox Integration":
+    description: "Problems with Xbox integration, game restrictions, and gaming time controls"
+    examples:
+      - "Xbox game restrictions are not working"
+      - "Gaming time limits are being ignored"
+      - "Minecraft time controls are not effective"
+      - "Xbox Live restrictions are not syncing"
+    keywords: ["xbox", "game", "minecraft", "console", "play", "gaming", "xbox live"]
+
+  "Forced Usage & App Dependency":
+    description: "Complaints about being forced to use the app or mandatory usage requirements"
+    examples:
+      - "Forced to use this app by school/work"
+      - "Cannot avoid using Family Safety"
+      - "App is required but doesn't work well"
+      - "Mandatory usage but features are broken"
+    keywords: ["forced", "have to use", "required", "mandatory", "can't avoid"]
+
+  "Account Linking & Sharing":
+    description: "Issues with linking family accounts, sharing permissions, and Microsoft account integration"
+    examples:
+      - "Cannot link family members properly"
+      - "Account sharing is not working"
+      - "Microsoft account integration has problems"
+      - "Office account linking is broken"
+    keywords: ["share", "link", "family member", "office", "account sharing", "microsoft account"]
+
+  "Sync & Update Issues":
+    description: "Problems with settings sync, update delays, and cross-device synchronization"
+    examples:
+      - "Settings changes take too long to sync"
+      - "Updates are not reflecting on all devices"
+      - "Time limits are not propagating properly"
+      - "Sync delays cause inconsistent behavior"
+    keywords: ["delay", "not updating", "not reflecting", "takes time", "propagate", "sync delay"]
+
+  "Payment & Allowance":
+    description: "Issues with adding money, in-app purchases, allowances, and payment management"
+    examples:
+      - "Cannot add money to child's account"
+      - "In-app purchase controls are not working"
+      - "Allowance system is broken"
+      - "Payment permissions are confusing"
+    keywords: ["add money", "in-app purchase", "buy", "payment", "add balance", "billing", "allowance"]
+
+  "Approval & Permissions":
+    description: "Problems with approval requests, permission management, and granting access"
+    examples:
+      - "Approval requests are not coming through"
+      - "Cannot grant extra time when needed"
+      - "Permission system is too complicated"
+      - "Emergency access is not working"
+    keywords: ["approve", "approval", "permission", "request", "grant access", "extra time"]
+
+# AI Categorization Configuration
+ai_categorization:
+  enabled: true
+  use_cache: true
+  confidence_threshold: 0.75
+  batch_size: 5
+  fallback_to_keywords: true
+
+# Data source configuration
 data_sources:
   playstore:
     enabled: true
@@ -56,7 +176,7 @@ data_sources:
   news:
     enabled: true
 
-# Fetch limits overrides (if different from defaults)
+# Fetch limits
 limits:
   playstore: 2000
   appstore: 300
